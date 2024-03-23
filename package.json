@@ -8,7 +8,9 @@
     "start-prod": "node app.js",
     "test": "jest",
     "eslint": "eslint './**/*.{js,jsx}'",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "cypress:open": "cypress open",
+    "test:e2e": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,12 @@
     "url": "https://github.com/smartlyio/fullstackopen-cicd/issues"
   },
   "homepage": "https://github.com/smartlyio/fullstackopen-cicd#readme",
+  "jest": {
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": [
+      "e2e-tests"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/plugin-transform-runtime": "^7.23.7",
@@ -44,7 +52,8 @@
     "style-loader": "^3.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^4.15.1",
+    "cypress": "^13.7.1"
   },
   "dependencies": {
     "axios": "^1.6.5",
@@ -52,8 +61,5 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1"
-  },
-  "jest": {
-    "testEnvironment": "jsdom"
   }
 }
