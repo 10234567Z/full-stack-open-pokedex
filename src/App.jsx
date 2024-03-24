@@ -1,10 +1,10 @@
 import React from 'react'
-import { BrowserRouter as useMatch } from 'react-router-dom'
-import { useApi } from './useApi'
+import { Route, useMatch, Routes } from 'react-router-dom'
 import LoadingSpinner from './LoadingSpinner'
 import ErrorMessage from './ErrorMessage'
 import PokemonPage from './PokemonPage'
 import PokemonList from './PokemonList'
+import { useApi } from './useApi'
 
 const mapResults = (({ results }) => results.map(({ url, name }) => ({
   url,
@@ -33,13 +33,10 @@ const App = () => {
   }
 
   return (
-    <>
-      {
-        previous && next
-          ? <PokemonPage pokemonList={pokemonList} previous={previous} next={next} />
-          : <PokemonList pokemonList={pokemonList} />
-      }
-    </>
+    <Routes>
+      <Route exact path="/" errorElement={<ErrorMessage />} element={<PokemonList pokemonList={pokemonList} />} />
+      <Route path="/pokemon/:name" errorElement={<ErrorMessage />} element={<PokemonPage pokemonList={pokemonList} previous={previous} next={next} />} />
+    </Routes>
   )
 }
 
